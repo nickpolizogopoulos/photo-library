@@ -1,9 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+
+import { Favorites as FavoritesService } from '../../services/favorites/favorites';
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-favorites',
-  imports: [],
-  templateUrl: './favorites.html',
-  styleUrl: './favorites.scss',
+  imports: [
+    RouterLink,
+    MatButtonModule,
+    MatIconModule
+  ],
+  template: `
+  
+    <div [class.grid]="hasFavorites()">
+      @for (photo of favorites(); track photo.id) {
+        <img
+          [src]="photo.url"
+          [alt]="'photo: ' + photo.id"
+          (click)="openPhoto(photo.id)"
+        />
+      }
+      @empty {
+        <p>Your favorites list is empty. Explore photos and select your favorites.</p>
+        <a matButton="filled" routerLink="/">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back"></mat-icon>
+          Photos
+        </a>
+      }
+    </div>
+  `,
+  styles: `
+  
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+
+    img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: box-shadow;
+      transition-duration: 140ms;
+      border-radius: 1rem;
+
+      &:hover {
+        box-shadow: 2px 3px 10px rgb(123, 123, 123);
+      }
+    }
+
+    .loader {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+  `
 })
-export class Favorites {}
+export class Favorites {
+
+  readonly #router = inject(Router);
+  readonly #favoritesService = inject(FavoritesService);
+
+  readonly hasFavorites = computed(() => this.#favoritesService.favorites().length > 0);
+  readonly favorites = this.#favoritesService.favorites;
+
+  openPhoto(photoId: string) {
+    this.#router.navigate(['/photos', photoId]);
+  };
+  
+}
