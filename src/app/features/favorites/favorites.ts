@@ -6,7 +6,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-favorites',
   imports: [
     RouterLink,
     MatButtonModule,
@@ -30,35 +29,6 @@ import { MatIconModule } from '@angular/material/icon';
         </a>
       }
     </div>
-  `,
-  styles: `
-  
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding: 20px;
-    }
-
-    img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      cursor: pointer;
-      transition: box-shadow;
-      transition-duration: 140ms;
-      border-radius: 1rem;
-
-      &:hover {
-        box-shadow: 2px 3px 10px rgb(123, 123, 123);
-      }
-    }
-
-    .loader {
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
   `
 })
 export class Favorites {

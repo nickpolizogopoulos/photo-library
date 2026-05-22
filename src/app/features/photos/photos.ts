@@ -5,7 +5,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
-  selector: 'app-photos',
   imports: [
     MatGridListModule,
     MatProgressSpinnerModule
@@ -22,35 +21,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
       <div class="loader">
         <mat-spinner></mat-spinner>
       </div>
-    }
-  `,
-  styles: `
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding: 20px;
-    }
-
-    img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      cursor: pointer;
-      transition: box-shadow;
-      transition-duration: 140ms;
-      border-radius: 1rem;
-
-      &:hover {
-        box-shadow: 2px 3px 10px rgb(123, 123, 123);
-      }
-    }
-
-    .loader {
-      display: flex;
-      justify-content: center;
-      padding: 20px;
     }
   `
 })

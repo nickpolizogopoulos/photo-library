@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { Header } from './shared/header/header';
@@ -12,10 +12,10 @@ import { Header } from './shared/header/header';
   template: `
   
     <app-header></app-header>
-    <router-outlet></router-outlet>
+    <section class="page">
+      <router-outlet></router-outlet>
+    </section>
   
   `
 })
-export class App {
-  protected readonly title = signal('photo-library');
-}
+export class App {}
