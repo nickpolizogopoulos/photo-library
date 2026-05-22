@@ -1,5 +1,5 @@
 import { Component, inject, signal, AfterViewInit, OnDestroy } from '@angular/core';
-import { Photos as PhotosService } from '../../services/photos';
+import { Photos as PhotosService } from '../../services/photos/photos';
 import { Photo } from '../../types/Photo';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
