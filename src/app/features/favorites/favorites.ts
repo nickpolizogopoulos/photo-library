@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
     <div [class.grid]="hasFavorites()">
       @for (photo of favorites(); track photo.id) {
         <img
+          class="grid-img"
           [src]="photo.url"
           [alt]="'photo: ' + photo.id"
           (click)="openPhoto(photo.id)"

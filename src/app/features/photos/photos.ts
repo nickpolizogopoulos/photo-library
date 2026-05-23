@@ -13,20 +13,21 @@ import { type Photo } from '../../types/Photo';
   ],
   template: `
   
-    <div class="grid">
+    <section class="grid">
       @for (photo of photos(); track photo.id) {
         <img
+          class="grid-img"
           alt="photo: {{ photo.id }}"
           [src]="photo.url"
           (click)="addToFavorites(photo)"
         />
       }
-    </div>
+    </section>
 
     @if (loading()) {
-      <div class="loader">
+      <section class="flex-center">
         <mat-spinner></mat-spinner>
-      </div>
+      </section>
     }
   `
 })
