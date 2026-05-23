@@ -1,8 +1,10 @@
 import { Component, inject, signal, AfterViewInit, OnDestroy } from '@angular/core';
-import { Photos as PhotosService } from '../../services/photos/photos';
-import { Photo } from '../../types/Photo';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
+
+import { Photos as PhotosService } from '../../services/photos/photos';
+import { Favorites as FavoritesService } from '../../services/favorites/favorites';
+import { type Photo } from '../../types/Photo';
 
 @Component({
   imports: [
@@ -13,7 +15,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
   
     <div class="grid">
       @for (photo of photos(); track photo.id) {
-        <img [src]="photo.url" alt="photo: {{photo.id}}" />
+        <img
+          alt="photo: {{ photo.id }}"
+          [src]="photo.url"
+          (click)="addToFavorites(photo)"
+        />
       }
     </div>
 
@@ -27,6 +33,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 export class Photos implements AfterViewInit, OnDestroy {
 
   readonly #photosService = inject(PhotosService);
+  readonly #favoritesService = inject(FavoritesService);
 
   constructor() {
     this.#loadPhotos();
@@ -42,6 +49,9 @@ export class Photos implements AfterViewInit, OnDestroy {
   readonly photos = signal<Photo[]>([]);
   readonly loading = signal(false);
 
+  protected addToFavorites(photo: Photo) {
+    this.#favoritesService.add(photo);
+  };
 
   #loadPhotos() {
     if (this.loading())
