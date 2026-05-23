@@ -65,6 +65,13 @@ img {
   border-radius: 1rem;
 }
 
+.grid-img {
+  transition: transform 80ms;
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
