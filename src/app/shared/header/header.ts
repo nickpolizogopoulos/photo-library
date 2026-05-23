@@ -43,6 +43,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         gap: 3rem;
         height: 4rem;
         border-bottom: 1px solid rgb(222, 222, 222);
+        position: sticky;
+        top: 0;
     }
 
     .active {
