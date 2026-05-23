@@ -4,23 +4,20 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { Photos as PhotosService } from '../../services/photos/photos';
 import { Favorites as FavoritesService } from '../../services/favorites/favorites';
+import { PhotoCard } from "../../shared/photo-card/photo-card";
 import { type Photo } from '../../types/Photo';
 
 @Component({
   imports: [
     MatGridListModule,
-    MatProgressSpinnerModule
-  ],
+    MatProgressSpinnerModule,
+    PhotoCard
+],
   template: `
   
     <section class="grid">
       @for (photo of photos(); track photo.id) {
-        <img
-          class="grid-img"
-          alt="photo: {{ photo.id }}"
-          [src]="photo.url"
-          (click)="addToFavorites(photo)"
-        />
+        <app-photo-card [photo]="photo" (photoClicked)="addToFavorites(photo)" />
       }
     </section>
 

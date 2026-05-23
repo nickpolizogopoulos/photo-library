@@ -1,26 +1,23 @@
 import { Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-
-import { Favorites as FavoritesService } from '../../services/favorites/favorites';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from '@angular/material/icon';
+
+import { Favorites as FavoritesService } from '../../services/favorites/favorites';
+import { PhotoCard } from "../../shared/photo-card/photo-card";
 
 @Component({
   imports: [
     RouterLink,
     MatButtonModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    PhotoCard
+],
   template: `
   
     <div [class.grid]="hasFavorites()">
       @for (photo of favorites(); track photo.id) {
-        <img
-          class="grid-img"
-          [src]="photo.url"
-          [alt]="'photo: ' + photo.id"
-          (click)="openPhoto(photo.id)"
-        />
+        <app-photo-card [photo]="photo" (photoClicked)="openPhoto(photo.id)" />
       }
       @empty {
         <p>Your favorites list is empty. Explore photos and select your favorites.</p>
