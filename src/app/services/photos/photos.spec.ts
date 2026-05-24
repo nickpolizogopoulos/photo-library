@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+import { firstValueFrom } from 'rxjs';
 
 import { Photos } from './photos';
 
-describe('Photos', () => {
+describe('Photos service', () => {
   let service: Photos;
 
   beforeEach(() => {
@@ -10,7 +11,11 @@ describe('Photos', () => {
     service = TestBed.inject(Photos);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+
+  it('should return the requested number of photos', async () => {
+    const photos = await firstValueFrom(service.getPhotos(5));
+
+    expect(photos.length).toBe(5);
   });
+  
 });
