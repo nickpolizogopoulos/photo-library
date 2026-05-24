@@ -28,10 +28,10 @@ import { Favorites as FavoritesService } from '../../services/favorites/favorite
 export class PhotoDetails {
 
   readonly #router = inject(Router);
-  readonly #activatedRouite = inject(ActivatedRoute);
+  readonly #activatedRoute = inject(ActivatedRoute);
   readonly #favoritesService = inject(FavoritesService);
 
-  readonly #photoId = this.#activatedRouite.snapshot.paramMap.get('id');
+  readonly #photoId = this.#activatedRoute.snapshot.paramMap.get('id');
   protected readonly photo = computed(() =>
     this.#favoritesService
       .favorites()

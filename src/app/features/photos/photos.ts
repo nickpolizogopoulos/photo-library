@@ -12,7 +12,7 @@ import { type Photo } from '../../types/Photo';
     MatGridListModule,
     MatProgressSpinnerModule,
     PhotoCard
-],
+  ],
   template: `
   
     <section class="grid">
@@ -37,11 +37,12 @@ export class Photos implements AfterViewInit, OnDestroy {
     this.#loadPhotos();
   }
 
+  readonly #scrollHandler = this.#onScroll.bind(this);
   ngAfterViewInit() {
-    window.addEventListener('scroll', this.#onScroll.bind(this));
+    window.addEventListener('scroll', this.#scrollHandler);
   };
   ngOnDestroy() {
-    window.removeEventListener('scroll', this.#onScroll);
+    window.removeEventListener('scroll', this.#scrollHandler);
   };
 
   readonly photos = signal<Photo[]>([]);

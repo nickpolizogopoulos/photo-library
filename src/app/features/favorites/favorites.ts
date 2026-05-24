@@ -15,7 +15,7 @@ import { PhotoCard } from "../../shared/photo-card/photo-card";
 ],
   template: `
   
-    <div [class.grid]="hasFavorites()">
+    <section [class.grid]="hasFavorites()">
       @for (photo of favorites(); track photo.id) {
         <app-photo-card [photo]="photo" (photoClicked)="openPhoto(photo.id)" />
       }
@@ -26,7 +26,7 @@ import { PhotoCard } from "../../shared/photo-card/photo-card";
           Photos
         </a>
       }
-    </div>
+    </section>
   `
 })
 export class Favorites {
