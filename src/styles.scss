@@ -41,7 +41,8 @@ body {
   width: fit-content;
 }
 
-img {
+.display-img,
+.grid-img {
   border-radius: 1rem;
 }
 
@@ -49,7 +50,6 @@ img {
   width: 100%;
   max-width: 50rem;
   height: auto;
-  border-radius: 1rem;
 }
 
 .grid {
