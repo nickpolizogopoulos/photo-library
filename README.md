@@ -1,59 +1,59 @@
-# PhotoLibrary
+# Photo Library
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
+An Angular application that displays a photo feed with infinite scroll and allows users to save and manage favorite photos.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Infinite scrolling photo feed
+- Click photos to add them to favorites
+- Favorite photos are persisted in the browser's localStorage
+- Dedicated photo details page with a "remove from favorites" action
 
+## Tech Stack
+
+- Latest [Angular](https://angular.dev/) version 21.2.11
+- Signals and Standalone Components
+- Angular Material
+- RxJS
+
+## Getting Started
+
+### Install dependencies
 ```bash
-ng serve
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Run locally
 ```bash
-ng generate component component-name
+ng serve --open
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+App will be available at:
+http://localhost:4200
 
+## Run tests
 ```bash
-ng generate --help
+npm test
 ```
 
-## Building
+## Design decisions & Notes
 
-To build the project run:
+- Application markup and styling are kept inside components since the application scope is small to avoid unnecessary file splitting and keep components self-contained and easy to manage.
+- If the application grows, templates and styles can be extracted into dedicated HTML and CSS files for larger-scale maintainability.
+- Favorites are stored in `localStorage`
+- Infinite scroll is implemented using a window scroll listener
+- Photo data is generated using Picsum API
+- Components are built with standalone Angular architecture
 
-```bash
-ng build
-```
+## Project Structure
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- features: Application pages (photos, favorites, details)
+- services: Data and state management
+- shared: UI components
+- types: Shared TypeScript types
 
-## Running unit tests
+## Future Improvements
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Visual indication for already-favorited photos
+- [Toast/snackbar](https://material.angular.dev/components/snack-bar/overview) feedback when adding or removing favorites
+- Replace the loading indicator with image skeletons for improved UX
